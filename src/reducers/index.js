@@ -1,37 +1,31 @@
-import { LOAD_STORIES, CLEAR_STORIES } from '../actions'; 
-const stories = [
-  {
-    "by":"Victor",
-    "id": 1234,
-    "title": "Test redux observable",
-    "url": "http://victorparracant.github.io/"
-  },
-  {
-    "by":"Manuel",
-    "id": 5678,
-    "title": "Redux observable Test 2",
-    "url": "http://victorparracant.github.io/"
-  }
-];
+import { FETCH_USER, FETCH_USER_FULFILLED } from '../actions';
 
 const initalState = {
-  items: [],
+  users: [
+    'VictorParraCant',
+    'sindresorhus'
+  ],
+  current: null,
+  loading: false
 };
 
 export function storiesReducer(state = initalState, action) {
   switch (action.type) {
-    case LOAD_STORIES:
+    case FETCH_USER:
       return {
-        items: stories.slice(),
+        ...state,
+        current: null,
+        loading: true
       };
 
-    case CLEAR_STORIES:
+    case FETCH_USER_FULFILLED:
       return {
-        items: [],
+        ...state,
+        current: action.payload,
+        loading: false
       };
 
     default: return state;
-
   }
 }
 

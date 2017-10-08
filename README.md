@@ -24,7 +24,9 @@ redux-observable/
       index.js
 
     components/
-      Stories.js
+      User.js
+      user.css
+      Users.js
 
     epics/
       index.js
